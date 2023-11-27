@@ -1,0 +1,1 @@
+Resolvi deixar os arquivos antigos só para caso de Backup, no entanto é só rodar a partir do AppGUI.java que tudo deve funcionar sem problemas.
