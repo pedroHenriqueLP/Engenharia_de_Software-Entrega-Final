@@ -1,3 +1,5 @@
+
+
 package classes;
 
 import java.util.*;
@@ -5,15 +7,21 @@ import java.util.*;
 public class Pessoa {
 
     private List<Veiculo> veiculos;
-    private List<Vagas> vaga; 
 
-    public void requisitarVagas(Scanner scanner) {
-        System.out.println("Insira um número de vaga: ");
-        int vagaInsert = scanner.nextInt();
-        System.out.println("A vaga " + vagaInsert + " foi atribuida a ti.");
-        Vagas novaVaga = new Vagas(vagaInsert, true);
-        this.adicionar_Vaga(novaVaga);
-        vaga.add(novaVaga);
+    public void atribuirVaga(Scanner scanner, List<Pessoa> pessoas) {
+        System.out.println("Insira o código da vaga desejada: ");
+        int codigoVaga = scanner.nextInt();
+
+        for (Pessoa pessoa : pessoas) {
+            if (pessoa.getVaga() != null && pessoa.getVaga().getNumero() == codigoVaga) {
+                System.out.println("A vaga já está atribuída a outra pessoa. Escolha outra vaga.");
+                return;
+            }
+        }
+
+        Vagas novaVaga = new Vagas(codigoVaga, true);
+        this.setVaga(novaVaga);
+        System.out.println("A vaga " + codigoVaga + " foi atribuída a você com sucesso!");
     }
 
     public void atribuir_Veiculo(Scanner scanner) {
@@ -35,7 +43,8 @@ public class Pessoa {
         Veiculo novoVeiculo = new Veiculo(placa, cor, marca, modelo);
         this.adicionar_Veiculo(novoVeiculo);
 
-        System.out.println("\n\nVeículo " + novoVeiculo.getMarca() + " " + novoVeiculo.getModelo() + " atribuído com sucesso!");
+        System.out.println(
+                "\n\nVeículo " + novoVeiculo.getMarca() + " " + novoVeiculo.getModelo() + " atribuído com sucesso!");
         veiculos.add(novoVeiculo);
         qtd_veiculos = qtd_veiculos + 1;
     }
@@ -45,6 +54,7 @@ public class Pessoa {
     private int n_apartamento;
     private int qtd_veiculos;
     private String genero;
+    private Vagas vaga;
 
     public Pessoa(String nome, String cpf, int n_apartamento, int qtd_veiculos, String genero) {
         this.nome = nome;
@@ -53,11 +63,6 @@ public class Pessoa {
         this.qtd_veiculos = qtd_veiculos;
         this.genero = genero;
         this.veiculos = new ArrayList<>();
-        this.vaga = new ArrayList<>();
-    }
-
-    public void adicionar_Vaga(Vagas novaVaga){
-        vaga.add(novaVaga);
     }
 
     public void adicionar_Veiculo(Veiculo novoVeiculo) {
@@ -102,5 +107,13 @@ public class Pessoa {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public Vagas getVaga() {
+        return vaga;
+    }
+
+    public void setVaga(Vagas vaga) {
+        this.vaga = vaga;
     }
 }

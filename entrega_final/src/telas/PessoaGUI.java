@@ -1,19 +1,23 @@
 package telas;
 
 import javax.swing.*;
+
+import classes.Vagas;
+
 import java.util.*;
 
 public class PessoaGUI {
 
     private List<VeiculoGUI> veiculos;
     private List<VagasGUI> vaga;
-
+    
     private String nome;
     private String cpf;
     private int n_apartamento;
     private int qtd_veiculos;
     private String genero;
-
+    private Vagas vagas;
+    
     public String getNome() {
         return nome;
     }
@@ -44,6 +48,10 @@ public class PessoaGUI {
     public void setGenero(String genero) {
         this.genero = genero;
     }
+    public Vagas getVaga() {
+        return vagas;
+    }
+    
 
     public PessoaGUI(String nome, String cpf, int n_apartamento, int qtd_veiculos, String genero) {
         this.nome = nome;

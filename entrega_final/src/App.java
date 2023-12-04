@@ -69,7 +69,7 @@ public class App {
                 int opcaoLogado = scanner.nextInt();
                 switch (opcaoLogado) {
                     case 1:
-                        inquilinoEncontrado.requisitarVagas(scanner);
+                        inquilinoEncontrado.atribuirVaga(scanner, inquilinos);
                         break;
                     case 2:
                         inquilinoEncontrado.atribuir_Veiculo(scanner);
